@@ -12,9 +12,7 @@
 <body>
     <nav class="navbar">
         <div class="container">
-            <div class="nav-brand">
-                <a href="index.html">Lazy Girls Tax</a>
-            </div>
+            <div class="nav-brand"><div class="nav-logo-wrap"><a href="index.html" class="nav-logo-text">Lazy Girls Tax</a><span class="logo-sparkle logo-sparkle-1" aria-hidden="true"></span><span class="logo-sparkle logo-sparkle-2" aria-hidden="true"></span><span class="logo-sparkle logo-sparkle-3" aria-hidden="true"></span></div></div>
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
@@ -49,20 +47,25 @@
                                 <span>✦</span>
                                 <span>✦</span>
                             </div>
-                            <div class="hero-savings">
-                                <div class="hero-savings-item">
-                                    <span>If you make $75k</span>
-                                    <strong class="accent-red">Save $5k+</strong>
+                            <form class="hero-form" action="contact.html">
+                                <div class="form-group">
+                                    <label for="hero-name">Name</label>
+                                    <input id="hero-name" name="name" type="text" placeholder="Name" required>
                                 </div>
-                                <div class="hero-savings-item">
-                                    <span>If you make $100k</span>
-                                    <strong class="accent-red">Save $7k+</strong>
+                                <div class="form-group">
+                                    <label for="hero-email">Email</label>
+                                    <input id="hero-email" name="email" type="email" placeholder="Email" required>
                                 </div>
-                                <div class="hero-savings-item">
-                                    <span>If you make $200k+</span>
-                                    <strong class="accent-red">Save $15k+</strong>
+                                <div class="form-group">
+                                    <label for="hero-phone">Phone</label>
+                                    <input id="hero-phone" name="phone" type="tel" placeholder="Phone">
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <label for="hero-message">Message</label>
+                                    <textarea id="hero-message" name="message" placeholder="Message"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Send Message</button>
+                            </form>
                             <div class="hero-illustration">
                                 <img src="lazy_girls_hero.jpg" alt="Lazy Girls Tax founders illustration">
                             </div>
@@ -227,3 +230,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
