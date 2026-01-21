@@ -64,6 +64,11 @@ p {
     font-size: 1.4em;
 }
 
+.accent-dot {
+    display: inline-block;
+    margin-left: 0.15em;
+}
+
 .accent-red {
     color: #E53935;
 }
@@ -369,11 +374,11 @@ section:first-of-type {
 
 .hero-illustration {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     border-radius: 18px;
     background: rgba(0, 175, 240, 0.08);
-    padding: 1.5rem;
+    padding: 1.5rem 1.5rem 0;
     font-weight: 600;
 }
 
