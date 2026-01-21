@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Industry Resources - Lazy Girl Tax</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">Lazy Girl Tax</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="contact.html" class="cta-nav">Start Here</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">Free Industry Resources</h1>
+                <p class="hero-subtitle">Access exclusive guides and stay updated with tax tips for content creators</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>Get Your Free Guide</h2>
+                <p>Sign up to access our free industry resource guide and join our mailing list for:</p>
+                <ul>
+                    <li>✅ Tax deadline reminders</li>
+                    <li>✅ Updates on tax law changes affecting content creators</li>
+                    <li>✅ Exclusive guides and resources</li>
+                    <li>✅ Tips for staying organized throughout the year</li>
+                </ul>
+
+                <form class="form-section" id="resourcesForm" style="margin-top: 2rem;">
+                    <div class="form-group">
+                        <label for="resource-name">Name *</label>
+                        <input type="text" id="resource-name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resource-email">Email *</label>
+                        <input type="email" id="resource-email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resource-phone">Phone</label>
+                        <input type="tel" id="resource-phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resource-state">State *</label>
+                        <select id="resource-state" name="state" required>
+                            <option value="">Select your state</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Communication Preferences</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="email-opt-in" name="email_opt_in" value="yes">
+                                <label for="email-opt-in">Email notifications</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="sms-opt-in" name="sms_opt_in" value="yes">
+                                <label for="sms-opt-in">SMS notifications</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="mailing-list" name="mailing_list" value="yes" required>
+                            <label for="mailing-list">I agree to join the mailing list *</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Get Free Resource</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Lazy Girl Tax</h3>
+                    <p>Trusted by creators and small business owners nationwide.</p>
+                    <p class="footer-tagline">Organized, accurate tax preparation and business support for content creators and influencers.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="how-it-works.html">How It Works</a></li>
+                        <li><a href="resources.html">Free Resources</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="legal.html">Privacy Policy</a></li>
+                        <li><a href="legal.html">Terms of Service</a></li>
+                        <li><a href="legal.html">Disclosures</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Lazy Girl Tax. All rights reserved.</p>
+                <p class="footer-disclosure">This business operates with a PTIN. We are not CPAs, EAs, or attorneys.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
