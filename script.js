@@ -1,5 +1,5 @@
 // Mobile menu toggle
-document.addEventListener('DOMContentLoaded', function() {
+const initSiteScripts = () => {
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
 
@@ -63,4 +63,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-});
+};
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSiteScripts);
+} else {
+    initSiteScripts();
+}
