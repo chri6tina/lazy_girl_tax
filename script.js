@@ -3,17 +3,28 @@ const initSiteScripts = () => {
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
 
-    if (mobileMenuToggle && navMenu) {
+    if (mobileMenuToggle && navMenu && !mobileMenuToggle.dataset.menuBound) {
         mobileMenuToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
         });
+        mobileMenuToggle.dataset.menuBound = 'true';
+    }
 
+    if (!document.body.dataset.menuDocBound) {
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            if (!navMenu.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
-                navMenu.classList.remove('active');
+            const currentMenu = document.querySelector('.nav-menu');
+            const currentToggle = document.querySelector('.mobile-menu-toggle');
+
+            if (!currentMenu || !currentToggle) {
+                return;
+            }
+
+            if (!currentMenu.contains(event.target) && !currentToggle.contains(event.target)) {
+                currentMenu.classList.remove('active');
             }
         });
+        document.body.dataset.menuDocBound = 'true';
     }
 
     // Form handling
@@ -64,6 +75,8 @@ const initSiteScripts = () => {
         });
     });
 };
+
+window.initSiteScripts = initSiteScripts;
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initSiteScripts);

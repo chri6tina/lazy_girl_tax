@@ -13,6 +13,10 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Sacramento&display=swap"
           rel="stylesheet"
         />
+        <meta
+          name="google-site-verification"
+          content="jLODoGyKLBO5toNn3Ie-hCIouPAsrZd7NJpADF6MPpw"
+        />
       </Head>
       <body>
         <Main />
