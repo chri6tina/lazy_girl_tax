@@ -478,6 +478,68 @@ section:first-of-type {
     color: var(--navy);
 }
 
+/* Location pages */
+.location-hero {
+    text-align: left;
+}
+
+.location-hero-content {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.location-hero-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(0, 175, 240, 0.18);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.location-hero-card ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.location-section {
+    padding: 70px 0;
+}
+
+.location-section-alt {
+    background: rgba(0, 175, 240, 0.06);
+}
+
+.location-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.location-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.location-faqs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .location-hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .location-hero-card {
+        text-align: left;
+    }
+}
+
 .hero-badge {
     display: inline-flex;
     align-items: center;
@@ -1412,6 +1474,10 @@ ul li {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+
     .logo-sparkle {
         display: none;
     }
@@ -1466,7 +1532,7 @@ ul li {
     }
 
     .hero-title {
-        font-size: 2.75rem;
+        font-size: 2.35rem;
         line-height: 1.2;
         margin-left: auto;
         margin-right: auto;
@@ -1479,6 +1545,11 @@ ul li {
 
     .hero-cta {
         justify-content: center;
+    }
+
+    .hero-cta .btn {
+        width: 100%;
+        max-width: 320px;
     }
 
     .hero-visual {
@@ -1498,6 +1569,10 @@ ul li {
 
     .pricing-hero-card {
         text-align: left;
+    }
+
+    .pricing-card {
+        padding: 1.5rem;
     }
 
     .section-title {
@@ -1524,7 +1599,7 @@ ul li {
     }
 
     section {
-        padding: 50px 0;
+        padding: 60px 0;
     }
 
     .content-section,
@@ -1585,10 +1660,19 @@ ul li {
         overflow-x: auto;
     }
 
+    .pricing-card {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
     .pricing-compare thead th,
     .pricing-compare tbody td {
         padding: 0.75rem;
         min-width: 140px;
+    }
+
+    .pricing-note {
+        font-size: 0.82rem;
     }
 }
 
