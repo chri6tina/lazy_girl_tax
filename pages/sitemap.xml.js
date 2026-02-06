@@ -1,12 +1,23 @@
 import { locations } from '../data/locations';
 
-const getBaseUrl = () => {
+const getBaseUrl = (req) => {
   if (process.env.NEXT_PUBLIC_SITE_URL) {
     return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '');
   }
+
+  const host = req?.headers?.host;
+  const proto =
+    req?.headers?.['x-forwarded-proto'] ||
+    (host && host.includes('localhost') ? 'http' : 'https');
+
+  if (host) {
+    return `${proto}://${host}`;
+  }
+
   if (process.env.VERCEL_URL) {
     return `https://${process.env.VERCEL_URL}`;
   }
+
   return 'http://localhost:3000';
 };
 
@@ -28,8 +39,8 @@ ${entries}
 </urlset>`;
 };
 
-export async function getServerSideProps({ res }) {
-  const baseUrl = getBaseUrl();
+export async function getServerSideProps({ req, res }) {
+  const baseUrl = getBaseUrl(req);
   const staticPages = [
     '/',
     '/about',
