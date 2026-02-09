@@ -1,12 +1,5 @@
-import StaticPage from '../components/StaticPage';
-import { loadPage } from '../lib/pageLoader';
+import PricingPage from '../components/PricingPage';
 
-export default function Pricing(props) {
-  return <StaticPage {...props} />;
-}
-
-export async function getStaticProps() {
-  return {
-    props: loadPage('pricing')
-  };
+export default function Pricing() {
+  return <PricingPage />;
 }
