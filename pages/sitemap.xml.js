@@ -1,4 +1,5 @@
 import { locations } from '../data/locations';
+import { states } from '../data/states';
 
 const getBaseUrl = (req) => {
   if (process.env.NEXT_PUBLIC_SITE_URL) {
@@ -54,9 +55,10 @@ export async function getServerSideProps({ req, res }) {
     '/services'
   ];
   const locationPages = locations.map((location) => `/locations/${location.slug}`);
+  const statePricingPages = states.map((state) => `/pricing/${state.slug}`);
 
   const sitemap = buildUrlSet(
-    [...staticPages, ...locationPages].map((path) => `${baseUrl}${path}`)
+    [...staticPages, ...locationPages, ...statePricingPages].map((path) => `${baseUrl}${path}`)
   );
 
   res.setHeader('Content-Type', 'text/xml');
