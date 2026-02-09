@@ -18,6 +18,11 @@ const LocationLayout = ({ location }) => {
     url: canonical
   };
 
+  const hasServices = location.services?.length;
+  const hasTestimonials = location.testimonials?.length;
+  const hasMap = location.map?.embedUrl;
+  const hasNearbyCities = location.nearbyCities?.length;
+
   return (
     <>
       <Head>
@@ -102,6 +107,70 @@ const LocationLayout = ({ location }) => {
             </div>
           </div>
         </section>
+
+        {hasServices && (
+          <section className="location-section">
+            <div className="container">
+              <h2 className="section-title">Services for {location.city} creators</h2>
+              <div className="location-services">
+                {location.services.map((service) => (
+                  <div key={service} className="location-service-card">
+                    <p>{service}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {hasTestimonials && (
+          <section className="location-section location-section-alt">
+            <div className="container">
+              <h2 className="section-title">What {location.city} creators say</h2>
+              <div className="location-testimonials">
+                {location.testimonials.map((testimonial) => (
+                  <div key={testimonial.name} className="testimonial-card">
+                    <p>"{testimonial.quote}"</p>
+                    <p>
+                      <strong>{testimonial.name}</strong>
+                      {testimonial.role ? `, ${testimonial.role}` : ''}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {hasMap && (
+          <section className="location-section">
+            <div className="container">
+              <h2 className="section-title">Serving creators across {location.city}</h2>
+              <div className="location-map">
+                <iframe
+                  title={`${location.city} service area map`}
+                  src={location.map.embedUrl}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+                {location.map.caption && <p>{location.map.caption}</p>}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {hasNearbyCities && (
+          <section className="location-section location-section-alt">
+            <div className="container">
+              <h2 className="section-title">Nearby cities we support</h2>
+              <div className="location-nearby">
+                {location.nearbyCities.map((city) => (
+                  <span key={city}>{city}</span>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="location-section">
           <div className="container">

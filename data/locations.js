@@ -21,6 +21,31 @@ export const locations = [
       'Clean bookkeeping setup that keeps you audit-ready year-round.',
       'Tax strategy built around California requirements and local filings.'
     ],
+    services: [
+      'Flat-rate tax prep for creators, freelancers, and digital entrepreneurs.',
+      'Monthly bookkeeping support to keep your income streams organized.',
+      'Quarterly estimate planning for California deadlines.',
+      'S-corp strategy and compliance guidance for growing teams.'
+    ],
+    testimonials: [
+      {
+        name: 'Jasmine P.',
+        role: 'Content creator',
+        quote:
+          'They organized my brand deal income and made quarterly taxes feel simple.'
+      },
+      {
+        name: 'Marco R.',
+        role: 'Digital entrepreneur',
+        quote:
+          'The bookkeeping support kept me ahead of every deadline without stress.'
+      }
+    ],
+    map: {
+      embedUrl: 'https://www.google.com/maps?q=Los+Angeles,+CA&output=embed',
+      caption: 'Remote support with local insight across the greater LA area.'
+    },
+    nearbyCities: ['Santa Monica', 'Burbank', 'Pasadena', 'Long Beach'],
     faqs: [
       {
         question: 'Do you work with creators who have multiple income streams?',
@@ -56,6 +81,31 @@ export const locations = [
       'Monthly bookkeeping that stays aligned with your cash flow.',
       'Tax prep that reflects Georgia filing needs and creator-specific deductions.'
     ],
+    services: [
+      'Flat-rate tax prep built for creators and small business owners.',
+      'Bookkeeping templates and monthly support to stay organized.',
+      'Quarterly estimate planning that matches Georgia requirements.',
+      'Business structure guidance as you scale your income.'
+    ],
+    testimonials: [
+      {
+        name: 'Avery L.',
+        role: 'Lifestyle creator',
+        quote:
+          'They helped me set up a simple system and I finally feel on top of taxes.'
+      },
+      {
+        name: 'Taylor W.',
+        role: 'Small business owner',
+        quote:
+          'The team explained everything clearly and kept me compliant all year.'
+      }
+    ],
+    map: {
+      embedUrl: 'https://www.google.com/maps?q=Atlanta,+GA&output=embed',
+      caption: 'Serving Atlanta creators with nationwide virtual support.'
+    },
+    nearbyCities: ['Decatur', 'Sandy Springs', 'Marietta', 'Brookhaven'],
     faqs: [
       {
         question: 'Do you support S-corps for Georgia creators?',
