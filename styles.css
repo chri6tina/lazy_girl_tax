@@ -1310,9 +1310,10 @@ section:first-of-type {
 }
 
 .pricing-packages {
-    display: none;
+    display: grid;
     margin-top: 2rem;
     gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 .package-card {
@@ -1799,7 +1800,7 @@ ul li {
     }
 
     .pricing-packages {
-        display: grid;
+        grid-template-columns: 1fr;
     }
 
     .package-card {
