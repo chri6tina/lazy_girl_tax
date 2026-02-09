@@ -3,10 +3,12 @@ import Head from 'next/head';
 const joinList = (items) => items.filter(Boolean).join(', ');
 
 const LocationLayout = ({ location }) => {
-  const title = `${location.city}, ${location.state} Creator Tax Services | Lazy Girls Tax`;
-  const description = `Flat-rate tax prep and bookkeeping for creators in ${location.city}, ${location.state}. Local support for ${joinList(
+  const defaultTitle = `${location.city}, ${location.state} Sex Work Tax Services | Lazy Girls Tax`;
+  const defaultDescription = `Sex work tax help and flat-rate tax prep for sex workers in ${location.city}, ${location.state}. Local support for ${joinList(
     location.serviceAreas
   )}.`;
+  const title = location.seo?.title || defaultTitle;
+  const description = location.seo?.description || defaultDescription;
   const canonical = `/locations/${location.slug}`;
 
   const jsonLd = {
@@ -14,7 +16,7 @@ const LocationLayout = ({ location }) => {
     '@type': 'ProfessionalService',
     name: `Lazy Girls Tax - ${location.city}`,
     areaServed: `${location.city}, ${location.state}`,
-    serviceType: 'Tax Preparation and Bookkeeping',
+    serviceType: 'Sex Work Tax Preparation and Bookkeeping',
     url: canonical
   };
 

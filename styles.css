@@ -1381,6 +1381,17 @@ section:first-of-type {
     padding-left: 1.2rem;
 }
 
+.package-cta {
+    margin-top: 0.5rem;
+    display: flex;
+}
+
+.package-cta .btn {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
 .pricing-note {
     margin-top: 1rem;
     font-size: 0.875rem;

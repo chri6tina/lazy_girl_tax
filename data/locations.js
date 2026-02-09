@@ -12,6 +12,11 @@ export const locations = [
       subtitle:
         'Flat-rate bookkeeping, tax prep, and business support tailored for LA creators, freelancers, and digital entrepreneurs.'
     },
+    seo: {
+      title: 'Los Angeles Sex Work Tax Help | Lazy Girls Tax',
+      description:
+        'Sex work tax help and flat-rate tax prep for sex workers in Los Angeles, CA. Discreet, judgment-free support for local filings and compliance.'
+    },
     overview: [
       'Los Angeles is home to a fast-moving creator economy with brand deals, multiple income streams, and complex write-offs.',
       'We help LA-based creators stay organized, maximize deductions, and stay compliant without the stress.'
@@ -71,6 +76,11 @@ export const locations = [
       title: 'Stress-free tax prep for Atlanta creators',
       subtitle:
         'We keep Atlanta creators organized with flat-rate tax prep, bookkeeping, and business support.'
+    },
+    seo: {
+      title: 'Atlanta Sex Work Tax Help | Lazy Girls Tax',
+      description:
+        'Sex work tax help and flat-rate tax prep for sex workers in Atlanta, GA. Discreet, judgment-free support for local filings and compliance.'
     },
     overview: [
       'Atlanta creators need clean records to keep up with fast growth and new income opportunities.',
