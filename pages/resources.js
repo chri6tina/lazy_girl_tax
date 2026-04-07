@@ -7,6 +7,6 @@ export default function Resources(props) {
 
 export async function getStaticProps() {
   return {
-    props: loadPage('resources')
+    props: loadPage('resources', '/resources')
   };
 }

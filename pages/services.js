@@ -7,6 +7,6 @@ export default function Services(props) {
 
 export async function getStaticProps() {
   return {
-    props: loadPage('services')
+    props: loadPage('services', '/services')
   };
 }

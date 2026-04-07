@@ -7,6 +7,6 @@ export default function Legal(props) {
 
 export async function getStaticProps() {
   return {
-    props: loadPage('legal')
+    props: loadPage('legal', '/legal')
   };
 }

@@ -7,6 +7,6 @@ export default function Reviews(props) {
 
 export async function getStaticProps() {
   return {
-    props: loadPage('reviews')
+    props: loadPage('reviews', '/reviews')
   };
 }

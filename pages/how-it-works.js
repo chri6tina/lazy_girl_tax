@@ -7,6 +7,6 @@ export default function HowItWorks(props) {
 
 export async function getStaticProps() {
   return {
-    props: loadPage('how-it-works')
+    props: loadPage('how-it-works', '/how-it-works')
   };
 }

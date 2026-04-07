@@ -1,15 +1,21 @@
 import Head from 'next/head';
+import { getAbsoluteSiteUrl } from '../lib/siteUrl';
 
 const joinList = (items) => items.filter(Boolean).join(', ');
+const DEFAULT_OG_IMAGE = '/lazy_girls_hero.jpg';
+const SITE_NAME = 'Lazy Girls Tax';
 
 const LocationLayout = ({ location }) => {
+  const base = getAbsoluteSiteUrl();
+  const path = `/locations/${location.slug}`;
   const defaultTitle = `${location.city}, ${location.state} Sex Work Tax Services | Lazy Girls Tax`;
   const defaultDescription = `Sex work tax help and flat-rate tax prep for sex workers in ${location.city}, ${location.state}. Local support for ${joinList(
     location.serviceAreas
   )}.`;
   const title = location.seo?.title || defaultTitle;
   const description = location.seo?.description || defaultDescription;
-  const canonical = `/locations/${location.slug}`;
+  const canonicalUrl = base ? `${base}${path}` : '';
+  const ogImage = base ? `${base}${DEFAULT_OG_IMAGE}` : '';
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -17,7 +23,7 @@ const LocationLayout = ({ location }) => {
     name: `Lazy Girls Tax - ${location.city}`,
     areaServed: `${location.city}, ${location.state}`,
     serviceType: 'Sex Work Tax Preparation and Bookkeeping',
-    url: canonical
+    url: canonicalUrl || path
   };
 
   const hasServices = location.services?.length;
@@ -30,7 +36,13 @@ const LocationLayout = ({ location }) => {
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <link rel="canonical" href={canonical} />
+        {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={SITE_NAME} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        {canonicalUrl ? <meta property="og:url" content={canonicalUrl} /> : null}
+        {ogImage ? <meta property="og:image" content={ogImage} /> : null}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -52,6 +64,7 @@ const LocationLayout = ({ location }) => {
             <li><a href="/about">About</a></li>
             <li><a href="/services">Services</a></li>
             <li><a href="/pricing">Pricing</a></li>
+            <li><a href="/blog">Blog</a></li>
             <li><a href="/contact" className="cta-nav">Start Here</a></li>
           </ul>
           <button className="mobile-menu-toggle" aria-label="Toggle menu">
@@ -218,6 +231,7 @@ const LocationLayout = ({ location }) => {
                 <li><a href="/about">About Us</a></li>
                 <li><a href="/services">Services</a></li>
                 <li><a href="/pricing">Pricing</a></li>
+                <li><a href="/blog">Blog</a></li>
                 <li><a href="/contact">Contact</a></li>
               </ul>
             </div>

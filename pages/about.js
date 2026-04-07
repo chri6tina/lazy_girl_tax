@@ -7,6 +7,6 @@ export default function About(props) {
 
 export async function getStaticProps() {
   return {
-    props: loadPage('about')
+    props: loadPage('about', '/about')
   };
 }

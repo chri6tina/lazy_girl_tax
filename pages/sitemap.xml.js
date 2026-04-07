@@ -1,26 +1,7 @@
 import { locations } from '../data/locations';
 import { states } from '../data/states';
-
-const getBaseUrl = (req) => {
-  if (process.env.NEXT_PUBLIC_SITE_URL) {
-    return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '');
-  }
-
-  const host = req?.headers?.host;
-  const proto =
-    req?.headers?.['x-forwarded-proto'] ||
-    (host && host.includes('localhost') ? 'http' : 'https');
-
-  if (host) {
-    return `${proto}://${host}`;
-  }
-
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
-
-  return 'http://localhost:3000';
-};
+import { listPublishedSlugsForSitemap } from '../lib/blogDb';
+import { getSiteUrlFromRequest } from '../lib/siteUrl';
 
 const buildUrlSet = (urls) => {
   const lastmod = new Date().toISOString();
@@ -41,7 +22,7 @@ ${entries}
 };
 
 export async function getServerSideProps({ req, res }) {
-  const baseUrl = getBaseUrl(req);
+  const baseUrl = getSiteUrlFromRequest(req);
   const staticPages = [
     '/',
     '/about',
@@ -52,13 +33,18 @@ export async function getServerSideProps({ req, res }) {
     '/pricing',
     '/resources',
     '/reviews',
-    '/services'
+    '/services',
+    '/blog'
   ];
   const locationPages = locations.map((location) => `/locations/${location.slug}`);
   const statePricingPages = states.map((state) => `/pricing/${state.slug}`);
+  const blogSlugs = await listPublishedSlugsForSitemap();
+  const blogPages = blogSlugs.map((slug) => `/blog/${slug}`);
 
   const sitemap = buildUrlSet(
-    [...staticPages, ...locationPages, ...statePricingPages].map((path) => `${baseUrl}${path}`)
+    [...staticPages, ...locationPages, ...statePricingPages, ...blogPages].map(
+      (path) => `${baseUrl}${path}`
+    )
   );
 
   res.setHeader('Content-Type', 'text/xml');

@@ -7,6 +7,6 @@ export default function CorePackage(props) {
 
 export async function getStaticProps() {
   return {
-    props: loadPage('core-package')
+    props: loadPage('core-package', '/core-package')
   };
 }

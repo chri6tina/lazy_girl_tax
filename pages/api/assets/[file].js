@@ -1,11 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 
-const allowedFiles = new Set(['lazy_girls_hero.jpg', 'logo.jpg', 'script.js']);
+const allowedFiles = new Set(['lazy_girls_hero.jpg', 'logo.jpg']);
 
 const contentTypes = {
-  '.jpg': 'image/jpeg',
-  '.js': 'text/javascript'
+  '.jpg': 'image/jpeg'
 };
 
 export default function handler(req, res) {

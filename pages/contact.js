@@ -7,6 +7,6 @@ export default function Contact(props) {
 
 export async function getStaticProps() {
   return {
-    props: loadPage('contact')
+    props: loadPage('contact', '/contact')
   };
 }

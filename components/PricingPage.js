@@ -1,5 +1,9 @@
 import Head from 'next/head';
 import { states } from '../data/states';
+import { getAbsoluteSiteUrl } from '../lib/siteUrl';
+
+const DEFAULT_OG_IMAGE = '/lazy_girls_hero.jpg';
+const SITE_NAME = 'Lazy Girls Tax';
 
 const chunkStates = (items, size) => {
   const chunks = [];
@@ -148,6 +152,10 @@ export default function PricingPage({ state }) {
   const description = stateName
     ? `Sex work tax preparation and bookkeeping in ${stateName} for creators, dancers, escorts, and independent contractors. Transparent pricing, audit defense, and judgment-free support.`
     : 'Sex work tax preparation and bookkeeping for creators, OnlyFans, dancers, and independent contractors. Transparent pricing, audit defense, and judgment-free support.';
+  const base = getAbsoluteSiteUrl();
+  const path = state?.slug ? `/pricing/${state.slug}` : '/pricing';
+  const canonicalUrl = base ? `${base}${path}` : '';
+  const ogImage = base ? `${base}${DEFAULT_OG_IMAGE}` : '';
   const heroTitle = stateName
     ? `${stateName} Pricing for Sex Work Tax Prep`
     : 'Pricing that keeps creators organized, compliant, and stress-free';
@@ -191,6 +199,13 @@ export default function PricingPage({ state }) {
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
+        {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={SITE_NAME} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        {canonicalUrl ? <meta property="og:url" content={canonicalUrl} /> : null}
+        {ogImage ? <meta property="og:image" content={ogImage} /> : null}
       </Head>
 
       <nav className="navbar">
@@ -217,6 +232,9 @@ export default function PricingPage({ state }) {
             </li>
             <li>
               <a href="/pricing">Pricing</a>
+            </li>
+            <li>
+              <a href="/blog">Blog</a>
             </li>
             <li>
               <a href="contact.html" className="cta-nav">
@@ -914,6 +932,9 @@ export default function PricingPage({ state }) {
                 </li>
                 <li>
                   <a href="/pricing">Pricing</a>
+                </li>
+                <li>
+                  <a href="/blog">Blog</a>
                 </li>
                 <li>
                   <a href="contact.html">Contact</a>
