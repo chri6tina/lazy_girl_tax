@@ -1,4 +1,4 @@
-import { getSiteUrlFromRequest } from '../../../lib/siteUrl';
+import { getPublicSiteUrlForNotifications } from '../../../lib/siteUrl';
 import { rateLimitAllow } from '../../../lib/notifyRateLimit';
 import { getClientIp, isSameSiteNotifyRequest } from '../../../lib/siteRequestOrigin';
 import { sendTelegramMessage } from '../../../lib/telegramNotify';
@@ -44,7 +44,7 @@ export default async function handler(req, res) {
       ? req.body.referrer.trim().slice(0, 200)
       : '';
 
-  const base = getSiteUrlFromRequest(req);
+  const base = getPublicSiteUrlForNotifications();
   const when = new Date().toISOString();
 
   const text = [

@@ -37,8 +37,7 @@ export default async function handler(req, res) {
   const result = await generateAndSaveResearchPost({
     topic,
     publish,
-    notifyTelegram,
-    siteUrl: process.env.NEXT_PUBLIC_SITE_URL
+    notifyTelegram
   });
 
   if (result.error) {

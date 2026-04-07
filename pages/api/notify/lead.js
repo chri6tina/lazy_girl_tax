@@ -1,4 +1,4 @@
-import { getSiteUrlFromRequest } from '../../../lib/siteUrl';
+import { getPublicSiteUrlForNotifications } from '../../../lib/siteUrl';
 import { rateLimitAllow } from '../../../lib/notifyRateLimit';
 import { getClientIp, isSameSiteNotifyRequest } from '../../../lib/siteRequestOrigin';
 import { sendTelegramMessage } from '../../../lib/telegramNotify';
@@ -104,7 +104,7 @@ export default async function handler(req, res) {
     );
   }
 
-  const base = getSiteUrlFromRequest(req);
+  const base = getPublicSiteUrlForNotifications();
   lines.push('', `Submitted (UTC): ${new Date().toISOString()}`);
   if (base) lines.push(`Site: ${base}`);
 

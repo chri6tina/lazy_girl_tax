@@ -67,15 +67,29 @@
                 );
                 if (btn) btn.disabled = true;
 
-                postJson('/api/notify/lead', payload)
+                fetch('/api/notify/lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                    body: JSON.stringify(payload)
+                })
                     .then(function (r) {
-                        return r.json().then(function (j) {
-                            return { ok: r.ok, j: j };
+                        return r.text().then(function (text) {
+                            var j = {};
+                            if (text) {
+                                try {
+                                    j = JSON.parse(text);
+                                } catch (e) {
+                                    j = { error: text.slice(0, 200) || 'Bad response' };
+                                }
+                            }
+                            return { ok: r.ok, status: r.status, j: j };
                         });
                     })
                     .then(function (_ref) {
-                        var ok = _ref.ok;
-                        if (!ok) throw new Error((_ref.j && _ref.j.error) || 'Request failed');
+                        if (!_ref.ok) {
+                            var errMsg = (_ref.j && _ref.j.error) || 'Request failed';
+                            throw new Error(errMsg + ' (' + _ref.status + ')');
+                        }
                         if (form.id === 'resourcesForm') {
                             alert(
                                 'Thank you for signing up! Check your email for your free resource guide.'
@@ -91,10 +105,16 @@
                         }
                         form.reset();
                     })
-                    .catch(function () {
-                        alert(
-                            'Something went wrong sending your message. Please try again or email us directly.'
-                        );
+                    .catch(function (err) {
+                        var msg = (err && err.message) || '';
+                        console.error('notify/lead:', msg || err);
+                        if (/Name and valid email|State is required|Message is required|Invalid source|Too many requests/i.test(msg)) {
+                            alert(msg.replace(/\s*\(\d+\)\s*$/, '').trim());
+                        } else {
+                            alert(
+                                'Something went wrong sending your message. Please try again or email us directly.'
+                            );
+                        }
                     })
                     .finally(function () {
                         if (btn) btn.disabled = false;
