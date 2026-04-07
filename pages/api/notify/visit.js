@@ -62,7 +62,6 @@ export default async function handler(req, res) {
     await sendTelegramMessage(text, { disableWebPagePreview: true });
   } catch (e) {
     console.error('notify/visit Telegram:', e.message);
-    return res.status(502).json({ ok: false, error: 'Notify failed' });
   }
 
   return res.status(200).json({ ok: true });

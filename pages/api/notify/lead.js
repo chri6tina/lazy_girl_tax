@@ -108,14 +108,15 @@ export default async function handler(req, res) {
   lines.push('', `Submitted (UTC): ${new Date().toISOString()}`);
   if (base) lines.push(`Site: ${base}`);
 
+  let notified = false;
   try {
-    await sendTelegramMessage(lines.join('\n'), { disableWebPagePreview: true });
+    const r = await sendTelegramMessage(lines.join('\n'), { disableWebPagePreview: true });
+    notified = !r.skipped;
   } catch (e) {
     console.error('notify/lead Telegram:', e.message);
-    return res.status(502).json({ ok: false, error: 'Could not deliver message' });
   }
 
-  return res.status(200).json({ ok: true });
+  return res.status(200).json({ ok: true, notified });
 }
 
 export const config = {
