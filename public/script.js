@@ -9,6 +9,184 @@
         });
     }
 
+    function burstConfetti(canvas) {
+        var ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        function sizeCanvas() {
+            var dpr = window.devicePixelRatio || 1;
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+            canvas.style.width = w + 'px';
+            canvas.style.height = h + 'px';
+            canvas.width = Math.floor(w * dpr);
+            canvas.height = Math.floor(h * dpr);
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+
+        sizeCanvas();
+        var onResize = function () {
+            sizeCanvas();
+        };
+        window.addEventListener('resize', onResize);
+
+        var colors = ['#00AFF0', '#3CB371', '#FFC107', '#FF6B9D', '#1F1F1F', '#FFF6EB', '#E67E3C'];
+        var particles = [];
+        var secondBurst = false;
+
+        function spawn(cx, cy, n, spread) {
+            spread = spread || 1;
+            for (var i = 0; i < n; i += 1) {
+                var a = -Math.PI / 2 + (Math.random() - 0.5) * 2.4 * spread;
+                var speed = (10 + Math.random() * 14) * spread;
+                particles.push({
+                    x: cx + (Math.random() - 0.5) * 50,
+                    y: cy,
+                    vx: Math.cos(a) * speed,
+                    vy: Math.sin(a) * speed,
+                    rot: Math.random() * Math.PI * 2,
+                    vr: (Math.random() - 0.5) * 0.35,
+                    w: 5 + Math.random() * 7,
+                    h: 7 + Math.random() * 11,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    g: 0.22 + Math.random() * 0.18,
+                    drag: 0.988 + Math.random() * 0.008,
+                    life: 1
+                });
+            }
+        }
+
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        spawn(w * 0.5, h * 0.4, 95, 1);
+
+        var start = performance.now();
+        var duration = 3200;
+
+        function frame(now) {
+            var elapsed = now - start;
+            if (!secondBurst && elapsed > 200) {
+                secondBurst = true;
+                spawn(w * 0.5, h * 0.45, 55, 0.85);
+            }
+
+            w = window.innerWidth;
+            h = window.innerHeight;
+            ctx.clearRect(0, 0, w, h);
+
+            for (var p = 0; p < particles.length; p += 1) {
+                var o = particles[p];
+                o.vy += o.g;
+                o.vx *= o.drag;
+                o.vy *= o.drag;
+                o.x += o.vx;
+                o.y += o.vy;
+                o.rot += o.vr;
+                if (elapsed > duration - 400) {
+                    o.life = Math.max(0, o.life - 0.02);
+                }
+                ctx.save();
+                ctx.globalAlpha = o.life;
+                ctx.translate(o.x, o.y);
+                ctx.rotate(o.rot);
+                ctx.fillStyle = o.color;
+                ctx.fillRect(-o.w / 2, -o.h / 2, o.w, o.h);
+                ctx.restore();
+            }
+
+            if (elapsed < duration) {
+                requestAnimationFrame(frame);
+            } else {
+                window.removeEventListener('resize', onResize);
+            }
+        }
+
+        requestAnimationFrame(frame);
+    }
+
+    function prefersReducedMotion() {
+        try {
+            return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        } catch (e) {
+            return false;
+        }
+    }
+
+    function showLeadSuccessModal(opts) {
+        var title = opts.title || "You're all set!";
+        var message = opts.message || "We'll be in touch soon.";
+        var buttonText = opts.buttonText || 'Got it';
+
+        var root = document.createElement('div');
+        root.className = 'lgt-celebration-root';
+        root.setAttribute('role', 'dialog');
+        root.setAttribute('aria-modal', 'true');
+        root.setAttribute('aria-labelledby', 'lgt-celebration-title');
+
+        var backdrop = document.createElement('div');
+        backdrop.className = 'lgt-celebration-backdrop';
+
+        var dialog = document.createElement('div');
+        dialog.className = 'lgt-celebration-dialog';
+
+        var badge = document.createElement('div');
+        badge.className = 'lgt-celebration-badge';
+        badge.setAttribute('aria-hidden', 'true');
+        badge.innerHTML = '<span class="lgt-celebration-spark">&#10022;</span>';
+
+        var h2 = document.createElement('h2');
+        h2.id = 'lgt-celebration-title';
+        h2.className = 'lgt-celebration-title';
+        h2.textContent = title;
+
+        var p = document.createElement('p');
+        p.className = 'lgt-celebration-message';
+        p.textContent = message;
+
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'lgt-celebration-close btn btn-primary';
+        btn.textContent = buttonText;
+
+        dialog.appendChild(badge);
+        dialog.appendChild(h2);
+        dialog.appendChild(p);
+        dialog.appendChild(btn);
+
+        root.appendChild(backdrop);
+        root.appendChild(dialog);
+        document.body.appendChild(root);
+
+        var prevOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+
+        if (!prefersReducedMotion()) {
+            var canvas = document.createElement('canvas');
+            canvas.className = 'lgt-celebration-canvas';
+            canvas.setAttribute('aria-hidden', 'true');
+            root.insertBefore(canvas, dialog);
+            burstConfetti(canvas);
+        }
+
+        function close() {
+            document.body.style.overflow = prevOverflow;
+            root.remove();
+            document.removeEventListener('keydown', onKey);
+        }
+
+        function onKey(e) {
+            if (e.key === 'Escape') close();
+        }
+
+        document.addEventListener('keydown', onKey);
+        backdrop.addEventListener('click', close);
+        btn.addEventListener('click', close);
+
+        setTimeout(function () {
+            btn.focus();
+        }, 80);
+    }
+
     function notifyVisitOnce() {
         try {
             if (sessionStorage.getItem('lgt_visit_ping')) return;
@@ -91,17 +269,26 @@
                             throw new Error(errMsg + ' (' + _ref.status + ')');
                         }
                         if (form.id === 'resourcesForm') {
-                            alert(
-                                'Thank you for signing up! Check your email for your free resource guide.'
-                            );
+                            showLeadSuccessModal({
+                                title: "You're on the list!",
+                                message:
+                                    'Thanks for signing up. Check your email for your free resource guide—we’ll keep you posted.',
+                                buttonText: 'Awesome'
+                            });
                         } else if (form.id === 'testimonialForm') {
-                            alert(
-                                'Thank you for your submission! We appreciate your feedback.'
-                            );
+                            showLeadSuccessModal({
+                                title: 'Thank you!',
+                                message:
+                                    'We received your message and really appreciate you taking the time. We’ll follow up when we can.',
+                                buttonText: 'Great'
+                            });
                         } else {
-                            alert(
-                                'Thank you for contacting us! We will get back to you soon via your preferred communication method.'
-                            );
+                            showLeadSuccessModal({
+                                title: 'We got it!',
+                                message:
+                                    'Thanks for reaching out. We’ll be in contact soon using your preferred method.',
+                                buttonText: 'Sounds good'
+                            });
                         }
                         form.reset();
                     })
