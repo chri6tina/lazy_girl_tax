@@ -2,13 +2,14 @@ import { verifyCronAuth } from '../../../lib/cronAuth';
 import { generateAndSaveResearchPost } from '../../../lib/researchBlogGenerator';
 
 /**
- * Cron / agent endpoint: generates one research-style blog draft via OpenAI, saves to Supabase.
+ * Cron / agent endpoint: generates one research-style blog post via OpenAI, saves to Supabase.
+ * Default: published immediately (live + sitemap). Opt out with ?publish=0 (GET) or publish: false (POST).
  *
  * Security: Authorization: Bearer CRON_SECRET (Vercel Cron uses this when CRON_SECRET is set)
  *           or header x-cron-secret: CRON_SECRET
  *
- * GET  — for Vercel Cron; optional query ?topic=...&publish=1
- * POST — JSON body { topic?, publish?, notifyTelegram? }
+ * GET  — Vercel Cron; optional ?topic=...&publish=0 to save as draft
+ * POST — JSON body { topic?, publish?: boolean, notifyTelegram? }
  */
 export default async function handler(req, res) {
   if (!verifyCronAuth(req)) {
@@ -21,16 +22,19 @@ export default async function handler(req, res) {
   }
 
   let topic;
-  let publish = false;
+  let publish = true;
   let notifyTelegram = true;
+
+  const explicitDraft = (v) =>
+    v === false || v === 0 || v === '0' || v === 'false' || v === 'draft';
 
   if (req.method === 'POST') {
     topic = req.body?.topic;
-    publish = !!req.body?.publish;
+    if (explicitDraft(req.body?.publish)) publish = false;
     if (req.body?.notifyTelegram === false) notifyTelegram = false;
   } else {
     topic = typeof req.query.topic === 'string' ? req.query.topic : undefined;
-    publish = req.query.publish === '1' || req.query.publish === 'true';
+    if (explicitDraft(req.query.publish)) publish = false;
     if (req.query.notify === '0' || req.query.notify === 'false') notifyTelegram = false;
   }
 

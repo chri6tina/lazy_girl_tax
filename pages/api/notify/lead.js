@@ -44,7 +44,8 @@ export default async function handler(req, res) {
 
   const body = req.body && typeof req.body === 'object' ? req.body : {};
 
-  if (clean(body.website, 80)) {
+  // Obscure name — `website` often gets autofilled on desktop, which skips Telegram silently.
+  if (clean(body.lgt_hp, 80)) {
     return res.status(200).json({ ok: true });
   }
 

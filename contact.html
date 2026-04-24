@@ -1,25 +1,22 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Start here: contact Lazy Girls Tax for confidential tax prep and bookkeeping for creators and sex workers. Book a consult or ask a question.">
     <title>Start Here - Contact Lazy Girls Tax</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
-</head>
+    <link rel="stylesheet" href="styles.css">`n</head>
 <body>
     <nav class="navbar">
         <div class="container">
-            <div class="nav-brand"><div class="nav-logo-wrap"><a href="index.html" class="nav-logo-text">Lazy Girls Tax</a><span class="logo-sparkle logo-sparkle-1" aria-hidden="true"></span><span class="logo-sparkle logo-sparkle-2" aria-hidden="true"></span><span class="logo-sparkle logo-sparkle-3" aria-hidden="true"></span></div></div>
+            <div class="nav-brand"><div class="nav-logo-wrap"><a href="/" class="nav-logo-text">Lazy Girls Tax</a><span class="logo-sparkle logo-sparkle-1" aria-hidden="true"></span><span class="logo-sparkle logo-sparkle-2" aria-hidden="true"></span><span class="logo-sparkle logo-sparkle-3" aria-hidden="true"></span></div></div>
             <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="contact.html" class="cta-nav">Start Here</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/pricing">Pricing</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/contact" class="cta-nav">Start Here</a></li>
             </ul>
             <button class="mobile-menu-toggle" aria-label="Toggle menu">
                 <span></span>
@@ -30,57 +27,86 @@
     </nav>
 
     <main>
-        <section class="hero">
+        <section class="hero hero--contact">
+            <div class="hero--contact-glow" aria-hidden="true"></div>
             <div class="container">
+                <p class="contact-hero-eyebrow">Start here · No pressure</p>
                 <h1 class="hero-title">Start Here</h1>
-                <p class="hero-subtitle">Get in touch to begin your journey to organized, stress-free tax preparation</p>
+                <p class="hero-subtitle">Tell us a bit about you—we’ll follow up with next steps for organized, stress-free tax prep and bookkeeping.</p>
+                <ul class="contact-trust-list" aria-label="What to expect">
+                    <li>Confidential, judgment-free replies</li>
+                    <li>Built for creators &amp; independent workers</li>
+                    <li>We typically respond within 1–2 business days</li>
+                </ul>
             </div>
         </section>
 
         <section class="contact-section">
-            <div class="container">
-                <div class="contact-card">
-                    <span class="contact-sparkle contact-sparkle-1" aria-hidden="true"></span>
-                    <span class="contact-sparkle contact-sparkle-2" aria-hidden="true"></span>
-                    <span class="contact-sparkle contact-sparkle-3" aria-hidden="true"></span>
-                    <h2 class="contact-title">Contact Us</h2>
-                    <form class="contact-form" id="contactForm" data-lead-source="contact">
-                        <input type="text" name="website" value="" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-                        <div class="contact-form-panel">
-                            <div class="form-group">
-                                <label for="contact-name">Name</label>
-                                <input type="text" id="contact-name" name="name" placeholder="Name" required>
+            <div class="container contact-layout">
+                <div class="contact-main">
+                    <div class="contact-card">
+                        <p class="contact-card-kicker">Send a message</p>
+                        <h2 class="contact-title">Contact Lazy Girls Tax</h2>
+                        <p class="contact-card-lead">Share your email and what you’re looking for—tax prep, bookkeeping, or a quick question. We’ll reach out using the details you provide.</p>
+                        <form class="contact-form" id="contactForm" data-lead-source="contact">
+                            <input type="text" name="lgt_hp" value="" autocomplete="off" tabindex="-1" aria-hidden="true" class="honeypot-field">
+                            <div class="contact-form-panel">
+                                <div class="form-group">
+                                    <label for="contact-name">Name</label>
+                                    <input type="text" id="contact-name" name="name" placeholder="Your name" required autocomplete="name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="contact-email">Email</label>
+                                    <input type="email" id="contact-email" name="email" placeholder="you@example.com" required autocomplete="email">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="contact-phone">Phone <span class="label-optional">(optional)</span></label>
+                                    <input type="tel" id="contact-phone" name="phone" placeholder="If you prefer a text or call" autocomplete="tel">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="contact-message">How can we help?</label>
+                                    <textarea id="contact-message" name="message" placeholder="e.g. state you’re in, type of income (W-2, 1099, platforms), or what you’re trying to sort out" rows="5"></textarea>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="contact-email">Email</label>
-                                <input type="email" id="contact-email" name="email" placeholder="Email" required>
+                            <button type="submit" class="btn btn-primary contact-submit">Send message</button>
+                        </form>
+
+                        <div class="contact-bottom">
+                            <div class="contact-bubble">
+                                We can’t wait to hear from you!
+                                <span class="contact-bubble-tail" aria-hidden="true"></span>
                             </div>
-
-                            <div class="form-group">
-                                <label for="contact-phone">Phone (optional)</label>
-                                <input type="tel" id="contact-phone" name="phone" placeholder="Phone (optional)">
+                            <div class="contact-characters" aria-hidden="true">
+                                <img src="/api/assets/lazy_girls_hero.jpg" alt="">
                             </div>
-
-                            <div class="form-group">
-                                <label for="contact-message">Message</label>
-                                <textarea id="contact-message" name="message" placeholder="Message"></textarea>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary contact-submit">Send Message</button>
-                    </form>
-
-                    <div class="contact-bottom">
-                        <div class="contact-bubble">
-                            We can’t wait to hear from you!
-                            <span class="contact-bubble-tail" aria-hidden="true"></span>
-                        </div>
-                        <div class="contact-characters" aria-hidden="true">
-                            <img src="/api/assets/lazy_girls_hero.jpg" alt="">
                         </div>
                     </div>
                 </div>
+
+                <aside class="contact-aside" aria-label="Helpful links">
+                    <div class="contact-aside-card">
+                        <h3 class="contact-aside-title">What happens next</h3>
+                        <ol class="contact-steps">
+                            <li><strong>You send this form</strong> — takes under a minute.</li>
+                            <li><strong>We read your note</strong> and reply by email (or phone if you left one).</li>
+                            <li><strong>We outline options</strong> — services, pricing, or a simple next step.</li>
+                        </ol>
+                    </div>
+                    <div class="contact-aside-card contact-aside-card--soft">
+                        <h3 class="contact-aside-title">While you wait</h3>
+                        <ul class="contact-aside-links">
+                            <li><a href="/pricing">View pricing &amp; packages</a></li>
+                            <li><a href="/how-it-works">How it works</a></li>
+                            <li><a href="/resources">Free resources</a></li>
+                            <li><a href="/blog">Tax tips on the blog</a></li>
+                        </ul>
+                    </div>
+                    <p class="contact-aside-note">Your information stays confidential—we’re here to help, not to judge.</p>
+                </aside>
             </div>
         </section>
     </main>
@@ -96,32 +122,32 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/services">Services</a></li>
+                        <li><a href="/pricing">Pricing</a></li>
                         <li><a href="/blog">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="/contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="how-it-works.html">How It Works</a></li>
-                        <li><a href="resources.html">Free Resources</a></li>
-                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="/how-it-works">How It Works</a></li>
+                        <li><a href="/resources">Free Resources</a></li>
+                        <li><a href="/reviews">Reviews</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Legal</h4>
                     <ul>
-                        <li><a href="legal.html">Privacy Policy</a></li>
-                        <li><a href="legal.html">Terms of Service</a></li>
-                        <li><a href="legal.html">Disclosures</a></li>
+                        <li><a href="/legal">Privacy Policy</a></li>
+                        <li><a href="/legal">Terms of Service</a></li>
+                        <li><a href="/legal">Disclosures</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Lazy Girls Tax. All rights reserved.</p>
+                <p>&copy; 2026 Lazy Girls Tax. All rights reserved.</p>
             </div>
         </div>
     </footer>

@@ -15,7 +15,9 @@ export default function handler(req, res) {
     return;
   }
 
-  const filePath = path.join(process.cwd(), file);
+  const publicPath = path.join(process.cwd(), 'public', file);
+  const rootPath = path.join(process.cwd(), file);
+  const filePath = fs.existsSync(publicPath) ? publicPath : rootPath;
   if (!fs.existsSync(filePath)) {
     res.status(404).send('Not found');
     return;

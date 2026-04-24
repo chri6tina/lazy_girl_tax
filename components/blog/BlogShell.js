@@ -135,7 +135,7 @@ export default function BlogShell({ title, description, canonicalPath, children 
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2024 Lazy Girls Tax. All rights reserved.</p>
+            <p>&copy; 2026 Lazy Girls Tax. All rights reserved.</p>
           </div>
         </div>
       </footer>
