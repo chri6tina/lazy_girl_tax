@@ -635,14 +635,7 @@ section:first-of-type {
 }
 
 .hero-visual::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--burnt-orange), #3CB371, var(--burnt-orange));
-    border-radius: 24px 24px 0 0;
+    display: none;
 }
 
 /* Form header */
