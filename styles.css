@@ -695,7 +695,7 @@ section:first-of-type {
     align-items: flex-end;
     justify-content: center;
     border-radius: 18px;
-    background: rgba(0, 175, 240, 0.08);
+    background: #F5F0E8;
     padding: 1.5rem 1.5rem 0;
     font-weight: 600;
 }
@@ -747,7 +747,7 @@ section:first-of-type {
     align-items: flex-end;
     justify-content: center;
     border-radius: 18px;
-    background: rgba(0, 175, 240, 0.08);
+    background: #F5F0E8;
     padding: 1.5rem 1.5rem 0;
     font-weight: 600;
 }
