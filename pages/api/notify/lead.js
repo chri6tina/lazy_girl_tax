@@ -6,6 +6,7 @@ import { sendTelegramMessage } from '../../../lib/telegramNotify';
 const leadBucket = new Map();
 
 const SOURCES = new Set(['contact', 'resources', 'testimonial', 'hero']);
+const FORMSPREE_LEAD_URL = 'https://formspree.io/f/xdajzbno';
 
 function clean(str, max) {
   if (str == null) return '';
@@ -18,6 +19,21 @@ function clean(str, max) {
 function validEmail(s) {
   if (!s || s.length > 254) return false;
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+}
+
+async function submitToFormspree(fields) {
+  const r = await fetch(process.env.FORMSPREE_LEAD_URL || FORMSPREE_LEAD_URL, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(fields)
+  });
+
+  if (!r.ok) {
+    throw new Error(`Formspree returned ${r.status}`);
+  }
 }
 
 export default async function handler(req, res) {
@@ -83,6 +99,7 @@ export default async function handler(req, res) {
     testimonial: 'Review / testimonial',
     hero: 'Home hero form'
   };
+  const submittedAt = new Date().toISOString();
 
   const lines = [
     '📩 Lazy Girls Tax — new lead',
@@ -106,7 +123,7 @@ export default async function handler(req, res) {
   }
 
   const base = getPublicSiteUrlForNotifications();
-  lines.push('', `Submitted (UTC): ${new Date().toISOString()}`);
+  lines.push('', `Submitted (UTC): ${submittedAt}`);
   if (base) lines.push(`Site: ${base}`);
 
   let notified = false;
@@ -117,7 +134,28 @@ export default async function handler(req, res) {
     console.error('notify/lead Telegram:', e.message);
   }
 
-  return res.status(200).json({ ok: true, notified });
+  let formspreeSubmitted = false;
+  try {
+    await submitToFormspree({
+      _subject: `Lazy Girls Tax lead: ${labels[source] || source}`,
+      site: 'Lazy Girls Tax',
+      source: labels[source] || source,
+      name,
+      email,
+      phone,
+      state,
+      message,
+      email_opt_in: emailOptIn,
+      sms_opt_in: smsOptIn,
+      mailing_list: mailingList,
+      submitted_at_utc: submittedAt
+    });
+    formspreeSubmitted = true;
+  } catch (e) {
+    console.error('notify/lead Formspree:', e.message);
+  }
+
+  return res.status(200).json({ ok: true, notified, formspreeSubmitted });
 }
 
 export const config = {
